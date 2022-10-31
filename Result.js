@@ -71,6 +71,8 @@ export default function Result({
   setAnswerArry,
   setFailArry,
   setIsFinish,
+  setGameIndex,
+  gameArry,
 }) {
   const total = failArry.length + answerArry.length;
   useEffect(() => {
@@ -81,6 +83,7 @@ export default function Result({
   }, []);
   const onRefresh = () => {
     setIsFinish(false);
+    setGameIndex((prev) => (gameArry.length <= prev + 1 ? 0 : prev + 1));
   };
   return (
     <>
@@ -118,7 +121,7 @@ export default function Result({
                   <ContentCard key={obj.word}>
                     <Ionicons
                       name={icons[obj.index].name}
-                      color="#F32075"
+                      color={PINK}
                       size={30}
                     />
                     <ContentText color={PINK}>: {obj.answer}</ContentText>

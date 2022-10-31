@@ -2,7 +2,6 @@ import React, { useEffect, useRef, useState } from "react";
 import { Animated, Easing, View } from "react-native";
 import styled from "styled-components/native";
 import { Ionicons } from "@expo/vector-icons";
-import icons from "./icons";
 import WCard from "./WCard";
 import { Fontisto } from "@expo/vector-icons";
 
@@ -75,7 +74,12 @@ const CardBox = styled.View`
   z-index: 10;
 `;
 
-export default function WBord({ setIsFinish, setFailArry, setAnswerArry }) {
+export default function WBord({
+  gameArry,
+  setIsFinish,
+  setFailArry,
+  setAnswerArry,
+}) {
   // State
   const [index, setIndex] = useState(0);
   const [wordArray, setWordArray] = useState([]);
@@ -83,8 +87,8 @@ export default function WBord({ setIsFinish, setFailArry, setAnswerArry }) {
   const [isPass, setIsPass] = useState(false);
   const [isSuccess, setSuccess] = useState(false);
 
-  const arry = icons[index].word.split("-");
-  const answer = icons[index].word.replace(/-/g, "");
+  const arry = gameArry[index].word.split("-");
+  const answer = gameArry[index].word.replace(/-/g, "");
   const submitWord = inputArray.join("");
   const nextIcon = () => {
     setIndex((prev) => prev + 1);
@@ -148,14 +152,14 @@ export default function WBord({ setIsFinish, setFailArry, setAnswerArry }) {
         });
       }
       creatScale.start(() => {
-        if (icons.length - 1 !== index) {
+        if (gameArry.length - 1 !== index) {
           setTimeout(() => {
             nextIcon();
             setInputArray([]);
           }, 600);
         }
         increaseScale.start(() => {
-          if (icons.length - 1 === index) {
+          if (gameArry.length - 1 === index) {
             setIsFinish(true);
             return;
           }
@@ -170,7 +174,7 @@ export default function WBord({ setIsFinish, setFailArry, setAnswerArry }) {
     <>
       <Top>
         <TopText>😜 What is This?</TopText>
-        <Ionicons name={icons[index].name} color="white" size={200} />
+        <Ionicons name={gameArry[index].name} color="white" size={200} />
       </Top>
       <Center>
         <CardBox>
