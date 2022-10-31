@@ -107,7 +107,7 @@ export default function Animation1() {
     <Container>
       <CardContainer>
         <Card style={{ transform: [{ scale: secondScale }] }}>
-          <Ionicons name={icons[index + 1]} color="#192a56" size={98} />
+          <Ionicons name={icons[index + 1].name} color="#192a56" size={98} />
         </Card>
         <Card
           {...panResponder.panHandlers}
@@ -119,7 +119,7 @@ export default function Animation1() {
             ],
           }}
         >
-          <Ionicons name={icons[index]} color="#192a56" size={98} />
+          <Ionicons name={icons[index].name} color="#192a56" size={98} />
         </Card>
       </CardContainer>
       <BtnContainer>
